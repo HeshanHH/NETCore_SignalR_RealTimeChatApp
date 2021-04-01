@@ -17,6 +17,16 @@ namespace ChatApp.Properties
             _dbContext = dbContext;
         }
         public IActionResult Index() => View();
+
+        [HttpGet("{id}")]
+        public IActionResult Chat(int id)
+        {
+            var chat = _dbContext.Chats.FirstOrDefault(x => x.Id == id);
+
+            return View(chat);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> CreateRoom(string name)
         {
             _dbContext.Chats.Add(new Chat

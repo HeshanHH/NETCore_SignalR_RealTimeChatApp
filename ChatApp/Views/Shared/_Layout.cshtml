@@ -10,11 +10,8 @@
 <body>
     <div class="navbar"></div>
     <div class="main">
-        <div class="side-menu">
-            <a class="room-button" href="#">Room</a>
-            @*to create a room*@
-            <a class="room-button" id="create-room-btn" href="#"><strong>+</strong></a>
-        </div>
+        @*vc for view component*@
+        <vc:room></vc:room>
         <div class="chat">
             @RenderBody()
         </div>
@@ -23,6 +20,7 @@
     <div class="modal" id="create-room-modal">
         <form asp-controller="Home" asp-action="CreateRoom" class="modal-body">
             <button type="button" onclick="closeModal()" class="close">X</button>
+            
             <header>Create Room</header>
             <div>
                 <input name="name" type="text" />
