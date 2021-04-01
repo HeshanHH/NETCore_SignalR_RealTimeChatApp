@@ -1,5 +1,6 @@
 ﻿using ChatApp.Database;
 using ChatApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ChatApp.Properties
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -29,7 +31,6 @@ namespace ChatApp.Properties
             return View(chat);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> CreateMessage(int chatId, string message)
         {
@@ -37,7 +38,7 @@ namespace ChatApp.Properties
             {
                 ChatId = chatId,
                 Text = message,
-                Name = "Default",
+                Name = User.Identity.Name,
                 Timestamp = DateTime.Now,
             };
 

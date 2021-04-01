@@ -38,7 +38,14 @@ namespace ChatApp
             // adding authentication.
             // AddEntityFrameworkStores<AppDbContext>() adding database i am using.
             // AddDefaultTokenProviders() add default Token provider.
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(options => {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+
+            })
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
         }
@@ -61,6 +68,7 @@ namespace ChatApp
             //});
 
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
         }
     }
