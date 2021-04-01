@@ -29,6 +29,23 @@ namespace ChatApp.Properties
             return View(chat);
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> CreateMessage(int chatId, string message)
+        {
+            var Message = new Message
+            {
+                ChatId = chatId,
+                Text = message,
+                Name = "Default",
+                Timestamp = DateTime.Now,
+            };
+
+            _dbContext.Messages.Add(Message);
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction("Chat", new { id = chatId});
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateRoom(string name)
         {
