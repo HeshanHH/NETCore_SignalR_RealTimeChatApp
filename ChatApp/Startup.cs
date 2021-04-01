@@ -6,25 +6,35 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace ChatApp
 {
     public class Startup
     {
-        
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
-
+            var connectionString = _configuration.GetConnectionString("DefaultConnection");
             services.AddMvc(options =>
             {
                 options.EnableEndpointRouting = false;
             });
 
-            services.AddDbContext<AppDbContext>();
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(connectionString)
+               );
             // adding authentication.
             // AddEntityFrameworkStores<AppDbContext>() adding database i am using.
             // AddDefaultTokenProviders() add default Token provider.
