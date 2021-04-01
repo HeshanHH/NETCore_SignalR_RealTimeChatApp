@@ -39,6 +39,7 @@ namespace ChatApp
             //    });
             //});
 
+            app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
     }
