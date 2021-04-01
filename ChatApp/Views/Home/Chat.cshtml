@@ -2,16 +2,15 @@
 
 @*for messages*@
 <div class="chat-body">
-    <div class="message">
-        <header>person</header>
-        <p>chat message 1</p>
-        <footer>16:00</footer>
-    </div>
-    <div class="message">
-        <header>Bob</header>
-        <p>chat message 2</p>
-        <footer>16:01</footer>
-    </div>
+    @foreach (var message in Model.Messages)
+    {
+        <div class="message">
+            <header>@message.Name</header>
+            <p>@message.Text</p>
+            <footer>@message.Timestamp</footer>
+        </div>
+    }
+    
 </div>
 @*for message input*@
 <div class="chat-input">

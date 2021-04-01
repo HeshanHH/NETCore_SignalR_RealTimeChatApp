@@ -1,6 +1,7 @@
 ﻿using ChatApp.Database;
 using ChatApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,9 @@ namespace ChatApp.Properties
         [HttpGet("{id}")]
         public IActionResult Chat(int id)
         {
-            var chat = _dbContext.Chats.FirstOrDefault(x => x.Id == id);
+            var chat = _dbContext.Chats
+                .Include(x => x.Messages)
+                .FirstOrDefault(x => x.Id == id);
 
             return View(chat);
         }
