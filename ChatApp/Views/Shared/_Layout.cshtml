@@ -1,15 +1,23 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"  />
-    <meta name="viewport"  content="width=device-width , initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel="stylesheet" href="~/css/site.css"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width , initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="~/css/site.css" />
     <title>ChatApp</title>
 </head>
 <body>
-    <div>
-        @RenderBody();
+    <div class="navbar"></div>
+    <div class="main">
+        <div class="side-menu">
+            <a class="room-button" href="#">Room</a>
+            @*to create a room*@
+            <a class="room-button" href="#"><strong>+</strong></a> 
+        </div>
+        <div class="chat">
+            @RenderBody()
+        </div>
     </div>
 </body>
 </html>
