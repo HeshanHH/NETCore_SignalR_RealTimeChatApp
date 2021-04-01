@@ -13,16 +13,16 @@
         <div class="side-menu">
             <a class="room-button" href="#">Room</a>
             @*to create a room*@
-            <a class="room-button" href="#"><strong>+</strong></a>
+            <a class="room-button" id="create-room-btn" href="#"><strong>+</strong></a>
         </div>
         <div class="chat">
             @RenderBody()
         </div>
 
     </div>
-    <div class="modal active">
+    <div class="modal active" id="create-room-modal">
         <form asp-controller="" asp-action="" class="modal-body">
-            <button type="button" class="close">X</button>
+            <button type="button" onclick="closeModal()" class="close">X</button>
             <header>Create Room</header>
             <div>
                 <input type="text" />
@@ -32,5 +32,7 @@
             </footer>
         </form>
     </div>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", false)
 </body>
 </html>
