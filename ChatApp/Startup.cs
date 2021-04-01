@@ -1,7 +1,9 @@
 using ChatApp.Database;
+using ChatApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -23,6 +25,12 @@ namespace ChatApp
             });
 
             services.AddDbContext<AppDbContext>();
+            // adding authentication.
+            // AddEntityFrameworkStores<AppDbContext>() adding database i am using.
+            // AddDefaultTokenProviders() add default Token provider.
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
