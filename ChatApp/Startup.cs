@@ -1,3 +1,4 @@
+using ChatApp.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,11 +16,13 @@ namespace ChatApp
         
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddMvc(options =>
             {
-
                 options.EnableEndpointRouting = false;
             });
+
+            services.AddDbContext<AppDbContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
